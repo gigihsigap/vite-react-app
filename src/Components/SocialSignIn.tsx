@@ -17,8 +17,7 @@ export function SocialSignIn({ enabled = true, setError }: ISocialSignInProps) {
       await googleSignin()
       navigate('/')
     } catch (err) {
-      console.log("ERROR Google", err)
-      setError('Failed to log in with Google')
+      setError('Failed to log in with Google!')
     }
   }
 
@@ -28,8 +27,7 @@ export function SocialSignIn({ enabled = true, setError }: ISocialSignInProps) {
       await githubSignin()
       navigate('/')
     } catch (err) {
-      console.log("ERROR Github",err)
-      setError('Failed to log in with GitHub')
+      setError('Failed to log in with GitHub!')
     }
   }
   return (

@@ -8,6 +8,7 @@ import { SocialSignIn } from './SocialSignIn'
 
 export default function Signup() {
   const emailRef = useRef<HTMLInputElement>(null)
+  const usernameRef = useRef<HTMLInputElement>(null)
   const passwordRef = useRef<HTMLInputElement>(null)
   const passwordConfirmRef = useRef<HTMLInputElement>(null)
   const { signup } = useAuth()
@@ -25,7 +26,7 @@ export default function Signup() {
     try {
       setError('')
       setLoading(true)
-      await signup(emailRef.current?.value, passwordRef.current?.value)
+      await signup(emailRef.current?.value, usernameRef.current?.value, passwordRef.current?.value)
       navigate('/')
     } catch {
       setError('Failed to create an account')
@@ -39,11 +40,11 @@ export default function Signup() {
       <div className="flex min-h-full items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
         <div className="w-full max-w-md space-y-8">
           <div>
-            <img
+            {/* <img
               className="mx-auto h-12 w-auto"
               src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9Ii0xMS41IC0xMC4yMzE3NCAyMyAyMC40NjM0OCI+CiAgPHRpdGxlPlJlYWN0IExvZ288L3RpdGxlPgogIDxjaXJjbGUgY3g9IjAiIGN5PSIwIiByPSIyLjA1IiBmaWxsPSIjNjFkYWZiIi8+CiAgPGcgc3Ryb2tlPSIjNjFkYWZiIiBzdHJva2Utd2lkdGg9IjEiIGZpbGw9Im5vbmUiPgogICAgPGVsbGlwc2Ugcng9IjExIiByeT0iNC4yIi8+CiAgICA8ZWxsaXBzZSByeD0iMTEiIHJ5PSI0LjIiIHRyYW5zZm9ybT0icm90YXRlKDYwKSIvPgogICAgPGVsbGlwc2Ugcng9IjExIiByeT0iNC4yIiB0cmFuc2Zvcm09InJvdGF0ZSgxMjApIi8+CiAgPC9nPgo8L3N2Zz4K"
               alt="Your Company"
-            />
+            /> */}
             <h2 className="mt-6 text-center text-3xl font-bold tracking-tight text-gray-900">
               Create an account
             </h2>
@@ -53,6 +54,23 @@ export default function Signup() {
             <input type="hidden" name="remember" defaultValue="true" />
             <div className="-space-y-px rounded-md shadow-sm">
               <div>
+                
+                <label htmlFor="username" className="sr-only">
+                  Username
+                </label>
+                <input
+                  id="username"
+                  name="username"
+                  type="text"
+                  autoComplete="text"
+                  ref={usernameRef}
+                  required
+                  className="relative block w-full appearance-none rounded-none rounded-t-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
+                  placeholder="Username"
+                />
+              </div>
+              <div>
+                
                 <label htmlFor="email-address" className="sr-only">
                   Email address
                 </label>
@@ -118,8 +136,8 @@ export default function Signup() {
             </div>
           </form>
 
-          <SpacerWithText text="or" />
-          <SocialSignIn setError={setError} enabled={!loading} />
+          {/* <SpacerWithText text="or" /> */}
+          {/* <SocialSignIn setError={setError} enabled={!loading} /> */}
         </div>
       </div>
     </>
